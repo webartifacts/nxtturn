@@ -14,18 +14,18 @@ DEBUG = not IS_PRODUCTION
 if not IS_PRODUCTION and not SECRET_KEY:
     SECRET_KEY = "a-dummy-secret-key-for-local-development-only-do-not-use-in-prod"
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.10.39"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "34.131.193.0"]
 if IS_PRODUCTION:
     pass
 else:
     ALLOWED_HOSTS.extend(
         [
             "*",
-            "192.168.10.39",
+            "34.131.193.0",
         ]
     )
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "192.168.10.39:5173")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "34.131.193.0:5173")
 
 INSTALLED_APPS = [
     "channels",
@@ -87,16 +87,16 @@ TEMPLATES = [
 if IS_PRODUCTION:
     DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=True)}
 else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DB_NAME"),
-            "USER": os.getenv("DB_USER"),
-            "PASSWORD": os.getenv("DB_PASSWORD"),
-            "HOST": os.getenv("DB_HOST"),
-            "PORT": os.getenv("DB_PORT"),
-        }
+   DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.getenv("DB_PASSWORD"),
+        'HOST': os.getenv("DB_HOST"),
+        'PORT': os.getenv("DB_PORT"),
     }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -170,7 +170,7 @@ REST_AUTH = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # For local-only frontend development
     "http://127.0.0.1:5173",  # Alternative for local-only
-    "http://192.168.10.39:5173",  # For accessing the frontend from other devices on the network
+    "http://34.131.193.0:5173",  # For accessing the frontend from other devices on the network
 ]
 
 # ==============================================================================
@@ -182,7 +182,7 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://192.168.10.39:5173",
+    "http://34.131.193.0:5173",
 ]
 
 CHANNEL_LAYERS = {
